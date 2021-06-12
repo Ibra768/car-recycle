@@ -8,8 +8,15 @@ export class AuthService {
   createNewUser(email: string, password: string) {
     return new Promise(
       (resolve, reject) => {
-        firebase.auth().createUserWithEmailAndPassword(email, password).then(
-          () => {
+
+        firebase.auth().createUserWithEmailAndPassword(email, password).then(cred => {
+          const db = firebase.firestore();
+          // @ts-ignore
+            db.collection("Users").doc(cred.user.uid).set({
+              bio: "toz"
+            }).then(() =>{
+              
+            })
             resolve(true);
           },
           (error) => {
@@ -23,9 +30,8 @@ export class AuthService {
   signInUser(email: string, password: string) {
     return new Promise(
       (resolve, reject) => {
-        firebase.auth().signInWithEmailAndPassword(email, password).then(
-          () => {
-            resolve(true);
+        firebase.auth().signInWithEmailAndPassword(email, password).then(cred => {
+            resolve(cred);
           },
           (error) => {
             reject(error);

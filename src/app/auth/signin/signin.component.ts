@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-signin',
   templateUrl: './signin.component.html',
-  styleUrls: ['./signin.component.css']
+  styleUrls: ['./signin.component.scss']
 })
 export class SigninComponent implements OnInit {
 
@@ -36,9 +36,9 @@ export class SigninComponent implements OnInit {
     // @ts-ignore
     const password = this.signinForm.get('password').value;
 
-    this.authService.signInUser(email, password).then(
-      () => {
-        this.router.navigate(['/news']).then(function(){
+    this.authService.signInUser(email, password).then(cred => {
+      console.log(cred);
+        this.router.navigate(['home']).then(function(){
 
         });
       },
