@@ -3,6 +3,9 @@ import {HttpClient} from "@angular/common/http";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ApiService} from "../services/api.service";
 
+declare var jquery:any;
+declare var $ :any;
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -101,11 +104,46 @@ export class HomeComponent implements OnInit {
 
   onRfrSubmit(){
 
+    var els = document.getElementsByTagName("td");
+
+    for(var i = 0; i < els.length; i++)
+    {
+      els[i].innerHTML = "";
+    }
+
     // @ts-ignore
     const rfr_value = this.rfrForm.get('rfr').value;
 
+
+    const rfr_sup_13489 = [5000,2500,1500,0,0,0];
+    const rfr_inf_13489 = [5000,2500,1500,1500,1500,0];
+    const rfr_inf_6300 = [5000,5000,3000,3000,3000,0];
+
+
     if(rfr_value > 13489){
-      alert('ok');
+
+      for(var i = 0; i < els.length; i++)
+      {
+        els[i].innerHTML = String(rfr_sup_13489[i]);
+      }
+
+
+    }
+    else if(rfr_value <= 13489 && rfr_value > 6300){
+
+      for(var i = 0; i < els.length; i++)
+      {
+        els[i].innerHTML = String(rfr_inf_13489[i]);
+      }
+
+    }
+    else{
+
+      for(var i = 0; i < els.length; i++)
+      {
+        els[i].innerHTML = String(rfr_inf_6300[i]);
+      }
+
     }
 
   }
