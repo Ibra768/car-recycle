@@ -1,0 +1,33 @@
+<div style="width: 100%;height: 100%;text-align: center;">
+  <div class="col-sm-4 col-sm-offset-2" style="margin: auto;">
+    <h2>Créer un compte</h2>
+    <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="nickname">Votre pseudo</label>
+        <input type="text"
+               id="nickname"
+               class="form-control"
+               formControlName="nickname">
+      </div>
+      <div class="form-group">
+        <label for="email">Adresse mail</label>
+        <input type="text"
+               id="email"
+               class="form-control"
+               formControlName="email">
+      </div>
+      <div class="form-group">
+        <label for="password">Mot de passe</label>
+        <input type="password"
+               id="password"
+               class="form-control"
+               formControlName="password">
+      </div>
+      <button class="btn btn-primary"
+              style="margin: 10px;"
+              type="submit"
+              [disabled]="signupForm.invalid">Créer mon compte</button>
+    </form>
+    <p class="text-danger">{{ errorMessage }}</p>
+  </div>
+</div>

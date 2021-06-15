@@ -1,0 +1,20 @@
+<nav class="navbar navbar-default">
+    <a routerLink="home" ><img src="../assets/images/logo.png" width="70" height="70"></a>
+    <ul class="nav">
+      <li routerLinkActive="active">
+        <a class="btn btn-primary" routerLink="books">Actualités</a>
+      </li>
+      <li routerLinkActive="active" *ngIf="!isAuth">
+        <a class="btn btn-primary" routerLink="auth/signup">Créer un compte</a>
+      </li>
+      <li routerLinkActive="active" *ngIf="!isAuth">
+        <a class="btn btn-primary" routerLink="auth/signin">Connexion</a>
+      </li>
+      <li routerLinkActive="active" *ngIf="isAuth">
+        <a class="btn btn-primary" routerLink="admin/profile">Mon profil</a>
+      </li>
+      <li *ngIf="isAuth">
+        <a class="btn btn-danger" (click)="onSignOut()" style="cursor:pointer">Déconnexion</a>
+      </li>
+    </ul>
+</nav>
