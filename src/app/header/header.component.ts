@@ -29,6 +29,8 @@ export class HeaderComponent implements OnInit {
 
   onSignOut() {
     this.authService.signOutUser();
+    // @ts-ignore
+    localStorage.removeItem('admin');
   }
 
   onNewActu() {

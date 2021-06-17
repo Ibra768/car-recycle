@@ -10,7 +10,7 @@ import DataSnapshot = firebase.database.DataSnapshot;
 export class ActusService {
 
   constructor() {
-    this.getActus();
+    //this.getActus();
   }
 
   actus: Actu[] = [];
@@ -22,15 +22,29 @@ export class ActusService {
   }
 
   saveActus() {
+    console.log(this.actus);
     firebase.database().ref('/actus').set(this.actus);
   }
 
-  getActus(){
-    firebase.database().ref("/actus")
-      .on("value", (data: DataSnapshot) => {
-        this.actus = data.val() ? data.val() : [];
-        this.emitActus();
-      });
+  getActus(pageIsHome: boolean){
+
+    if(pageIsHome === true){
+
+      firebase.database().ref().child("/actus").limitToFirst(3)
+        .on("value", (data: DataSnapshot) => {
+          this.actus = data.val() ? data.val() : [];
+          this.emitActus();
+        });
+
+    }
+    else{
+      firebase.database().ref("/actus")
+        .on("value", (data: DataSnapshot) => {
+          this.actus = data.val() ? data.val() : [];
+          this.emitActus();
+        });
+    }
+
   }
 
   getSingleActu(id: number){

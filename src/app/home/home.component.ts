@@ -31,6 +31,9 @@ export class HomeComponent implements OnInit {
     this.initForm();
   }
 
+  print(){
+    window.print();
+  }
   initForm() {
 
     $(".list-group-item").mouseover(function(){
@@ -46,7 +49,7 @@ export class HomeComponent implements OnInit {
         {
           scrollTop: $("#collapseOne").offset().top
         },
-        1200
+        "slow"
       );
 
     })
@@ -57,7 +60,7 @@ export class HomeComponent implements OnInit {
         {
           scrollTop: document.body.scrollHeight
         },
-        1200
+        "slow"
       );
 
     })
@@ -200,9 +203,9 @@ export class HomeComponent implements OnInit {
 
     $("html").animate(
       {
-        scrollTop: $(".accordion").offset().top
+        scrollTop: $("#rfrForm").offset().top - 90
       },
-      1200
+      "slow"
     );
 
   }

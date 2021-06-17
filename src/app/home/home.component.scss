@@ -1,13 +1,13 @@
-@media screen and (max-width: 840px) {
-  .flexbox{
-    flex-direction: column;
-  }
-  .w-40{
-    width: 100% !important;
-  }
-  .sidebar{
-    margin: auto;
-  }
+:host{
+  height: 100% !important;
+  width: 100% !important;
+}
+.flexbox{
+  flex-direction: column;
+}
+.sidebar{
+  width: 70%;
+  margin: auto;
 }
 .licenseplate {
   color: #333;

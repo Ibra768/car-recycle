@@ -37,7 +37,10 @@ export class SigninComponent implements OnInit {
     const password = this.signinForm.get('password').value;
 
     this.authService.signInUser(email, password).then(cred => {
-      console.log(cred);
+
+        // @ts-ignore
+        localStorage.setItem('admin', cred.user.displayName);
+
         this.router.navigate(['home']).then(function(){
 
         });

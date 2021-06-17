@@ -54,12 +54,13 @@ export class ActuListComponent implements OnInit, OnDestroy {
         this.actus = actus;
       }
     );
-    this.actusService.getActus();
+    this.actusService.getActus(this.pageIsHome);
     this.actusService.emitActus();
   }
 
   onDeleteActu(actu: Actu) {
     this.actusService.removeActu(actu);
+    return false;
   }
 
   onViewActu(id: number) {

@@ -1,4 +1,4 @@
-<div class="d-flex flexbox">
+<div class="d-flex flexbox" style="width: 100%;">
   <div class="d-flex flex-column justify-content-center align-items-center" style="width:100%;height:100%;">
       <img src="../assets/images/logo.png"/>
       <p class="p-infos">L'objectif de Car-Recycle est de vous permettre de connaitre votre éligibilité au dispositif
@@ -20,7 +20,7 @@
     <p class="text-muted p-infos">{{ vehicle_infos }}</p>
     <p style="font-family: 'Fredoka One', cursive;text-transform: uppercase;">{{ msgSearchForm }}</p>
     <p class="text-muted" style="font-size: 0.8em;text-align: center;" *ngIf="rfr_valid">Vous pouvez renseigner votre revenu fiscal de référence pour connaitre le montant de l'aide proposé par l'Etat.</p>
-    <form [formGroup]="rfrForm" (ngSubmit)="onRfrSubmit()" *ngIf="rfr_valid">
+    <form [formGroup]="rfrForm" (ngSubmit)="onRfrSubmit()" *ngIf="rfr_valid" id="rfrForm">
       <div class="input-group mb-3">
         <input type="text" class="form-control" placeholder="Revenu fiscal de référence" formControlName="rfr" maxlength="5">
         <div class="input-group-append">
@@ -94,6 +94,7 @@
         </div>
       </div>
       <p class="text-muted" style="text-align: left;font-size: 0.7em; padding: 5px;">*CTTE: VÃ©hicule utilitaire/sociÃ©tÃ© - **VP : VÃ©hicule de tourisme - ***VASP : VÃ©hicule spÃ©cialisÃ©</p>
+      <button class="btn btn-primary" (click)="print()">Exporter ma simulation</button>
     </div>
   </div>
   <div>

@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import {LOCALE_ID, NgModule} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -47,7 +47,7 @@ const appRoutes: Routes = [
     HttpClientModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [AuthService, AuthGuardService, ApiService, ActusService],
+  providers: [AuthService, AuthGuardService, ApiService, ActusService, { provide: LOCALE_ID, useValue: "fr-FR" }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
