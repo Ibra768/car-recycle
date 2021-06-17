@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import firebase from "firebase";
 
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -11,6 +12,7 @@ export class AppComponent {
       const firebaseConfig = {
         apiKey: "AIzaSyDIHFZmu3SfKq6AHxZ60an2lqig0leV2f0",
         authDomain: "car-recycle.firebaseapp.com",
+        databaseURL: "https://car-recycle-default-rtdb.europe-west1.firebasedatabase.app",
         projectId: "car-recycle",
         storageBucket: "car-recycle.appspot.com",
         messagingSenderId: "176257747168",

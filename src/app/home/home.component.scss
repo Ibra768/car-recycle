@@ -1,9 +1,12 @@
-@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
-@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css");
-
-@media screen and (max-width: 640px) {
+.w-60{
+  width:60%!important;
+}
+@media screen and (max-width: 840px) {
   .flexbox{
     flex-direction: column;
+  }
+  .w-40{
+    width: 100% !important;
   }
   .sidebar{
     margin: auto;

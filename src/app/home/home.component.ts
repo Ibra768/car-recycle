@@ -6,6 +6,7 @@ import {ApiService} from "../services/api.service";
 declare var jquery:any;
 declare var $ :any;
 
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -32,6 +33,13 @@ export class HomeComponent implements OnInit {
 
   initForm() {
 
+    $(".list-group-item").mouseover(function(){
+      // @ts-ignore
+      $(this).toggleClass("active");
+    }).mouseout(function(){
+      // @ts-ignore
+      $(this).toggleClass("active");
+    })
     $('#collapseOne').on('shown.bs.collapse', function () {
 
       $("html").animate(

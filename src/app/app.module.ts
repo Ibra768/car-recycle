@@ -12,11 +12,19 @@ import {HttpClientModule} from "@angular/common/http";
 import {RouterModule, Routes} from "@angular/router";
 import {SigninComponent} from "./auth/signin/signin.component";
 import {HomeComponent} from "./home/home.component";
+import {ApiService} from "./services/api.service";
+import { ActuListComponent } from './actulist/actulist.component';
+import {ActusService} from "./services/actus.service";
+import { SingleActuComponent } from './singleactu/singleactu.component';
+import { ActuFormComponent } from './actu-form/actu-form.component';
 
 const appRoutes: Routes = [
+  { path: 'home', component: HomeComponent },
+  { path: 'actus', component: ActuListComponent },
+  { path: 'actus/new', canActivate: [AuthGuardService], component: ActuFormComponent },
+  { path: 'actus/view/:id', component: SingleActuComponent },
   { path: 'auth/signup', component: SignupComponent },
   { path: 'auth/signin', component: SigninComponent },
-  { path: 'home', component: HomeComponent },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: '**', redirectTo: 'home' }
 ];
@@ -28,6 +36,9 @@ const appRoutes: Routes = [
     SignupComponent,
     SigninComponent,
     HeaderComponent,
+    ActuListComponent,
+    SingleActuComponent,
+    ActuFormComponent,
   ],
   imports: [
     BrowserModule,
@@ -36,7 +47,7 @@ const appRoutes: Routes = [
     HttpClientModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [AuthService, AuthGuardService],
+  providers: [AuthService, AuthGuardService, ApiService, ActusService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

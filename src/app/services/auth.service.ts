@@ -5,19 +5,22 @@ import firebase from "firebase";
 @Injectable()
 export class AuthService {
 
+  constructor() {
+  }
   createNewUser(nickname: string, email: string, password: string) {
     return new Promise(
       (resolve, reject) => {
 
         firebase.auth().createUserWithEmailAndPassword(email, password).then(cred => {
-          const db = firebase.firestore();
-          // @ts-ignore
-            db.collection("Users").doc(cred.user.uid).set({
-              nickname: nickname
-            }).then(() =>{
 
-            })
+          const user = firebase.auth().currentUser;
+          // @ts-ignore
+            user.updateProfile({
+              displayName: nickname,
+            });
+
             resolve(true);
+
           },
           (error) => {
             reject(error);
@@ -31,6 +34,7 @@ export class AuthService {
     return new Promise(
       (resolve, reject) => {
         firebase.auth().signInWithEmailAndPassword(email, password).then(cred => {
+          console.log(cred.user);
             resolve(cred);
           },
           (error) => {
@@ -42,9 +46,7 @@ export class AuthService {
   }
 
   signOutUser() {
-    firebase.auth().signOut().then(function(){
-
-    })
+    firebase.auth().signOut();
   }
 
 }
