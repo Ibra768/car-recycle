@@ -39,7 +39,6 @@ export class ActuListComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
 
-
     firebase.auth().onAuthStateChanged(
       (user) => {
         if(user) {

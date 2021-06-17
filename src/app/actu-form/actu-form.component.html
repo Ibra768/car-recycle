@@ -1,6 +1,6 @@
-<div class="row">
-  <div class="col-sm-8 col-sm-offset-2">
-    <h2>Enregistrer un nouveau livre</h2>
+<div>
+  <div class="col-sm-8 col-sm-offset-2" style="margin:auto;">
+    <h2>Ajouter une nouvelle actualité</h2>
     <form [formGroup]="actuForm" (ngSubmit)="onSaveBook()">
       <div class="form-group">
         <label for="title">Titre</label>
@@ -10,17 +10,25 @@
       <div class="form-group">
         <label for="author">Auteur</label>
         <input type="text" id="author"
-               class="form-control" formControlName="author">
+               class="form-control" formControlName="author" value="{{ user }}">
       </div>
       <div class="form-group">
-        <label for="synopsis">Synopsis</label>
-        <textarea id="synopsis"
-                  class="form-control" formControlName="synopsis">
+        <label for="content">Contenu</label>
+        <textarea id="content"
+                  class="form-control" formControlName="content">
         </textarea>
       </div>
-      <button class="btn btn-success" [disabled]="actuForm.invalid"
-              type="submit">Enregistrer
-      </button>
+      <div class="form-group">
+        <h4>Ajouter une photo</h4>
+        <input type="file" (change)="detectFiles($event)"
+               class="form-control" accept="image/*">
+        <p class="text-success" style="text-align: center;margin:5px;" *ngIf="fileUploaded">Le fichier a été correctement chargé. Vous pouvez valider le formulaire.</p>
+      </div>
+      <div class="form-group" style="text-align:center;margin-top: 5px;">
+        <button class="btn btn-success" [disabled]="actuForm.invalid  || fileIsUploading"
+                type="submit">Enregistrer
+        </button>
+      </div>
 
     </form>
   </div>

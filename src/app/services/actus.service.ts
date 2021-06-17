@@ -3,7 +3,6 @@ import {Subject} from "rxjs";
 import {Actu} from '../models/actu.model';
 import firebase from "firebase";
 import DataSnapshot = firebase.database.DataSnapshot;
-import {Data} from "@angular/router";
 
 @Injectable({
   providedIn: 'root'
@@ -54,6 +53,19 @@ export class ActusService {
   }
 
   removeActu(actu : Actu){
+
+    if(actu.photo) {
+      const storageRef = firebase.storage().refFromURL(actu.photo);
+      storageRef.delete().then(
+        () => {
+          console.log('Photo removed!');
+        },
+        (error) => {
+          console.log('Could not remove photo! : ' + error);
+        }
+      );
+    }
+
     const actuIndexToRemove = this.actus.findIndex(
       (actuEl) => {
         if(actuEl === actu) {
@@ -67,6 +79,28 @@ export class ActusService {
     this.actus.splice(actuIndexToRemove, 1);
     this.saveActus();
     this.emitActus();
+  }
+
+  uploadFile(file: File) {
+    return new Promise(
+      (resolve, reject) => {
+        const almostUniqueFileName = Date.now().toString();
+        const upload = firebase.storage().ref()
+          .child('images/' + almostUniqueFileName + file.name).put(file);
+        upload.on(firebase.storage.TaskEvent.STATE_CHANGED,
+          () => {
+            console.log('Chargement…');
+          },
+          (error) => {
+            console.log('Erreur de chargement ! : ' + error);
+            reject();
+          },
+          () => {
+            resolve(upload.snapshot.ref.getDownloadURL());
+          }
+        );
+      }
+    );
   }
 
 }

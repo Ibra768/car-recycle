@@ -1,6 +1,8 @@
 .sidebar{
   width: 70% !important;
   margin: auto;
-
+}
+:host{
+  width: 100%;
 }
 
